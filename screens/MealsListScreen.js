@@ -11,8 +11,18 @@ function MealsListScreen({ route }) {
   });
 
   function renderMealItem(itemData) {
-    return <MealItem title={itemData.item.title} />;
+    const item = itemData.item;
+    const mealItemProps = {
+      title: item.title,
+      imageUrl: item.imageUrl,
+      affordability: item.affordability,
+      complexity: item.complexity,
+      duration: item.duration,
+    };
+    return <MealItem {...mealItemProps} />;
   }
+  //* renderItem for FlatList
+  // for some reason itemData cant be destructured so above is the neatest way to pass in a long list of props
 
   return (
     <View style={styles.container}>
