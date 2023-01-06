@@ -1,6 +1,6 @@
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 
-function CategoryTile({ title, color }) {
+function CategoryTile({ title, color, onPress }) {
   return (
     <View style={styles.gridList}>
       <Pressable
@@ -8,6 +8,7 @@ function CategoryTile({ title, color }) {
           styles.button,
           pressed ? styles.buttonPressed : null,
         ]}
+        onPress={onPress}
       >
         <View style={[styles.itemContainer, { backgroundColor: color }]}>
           <Text style={styles.title}>{title}</Text>
