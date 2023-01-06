@@ -5,7 +5,7 @@ import { CATEGORIES } from '../data/dummy-data';
 function CategoriesScreen({ navigation }) {
   function renderCategoryItem(itemData) {
     function pressHandler() {
-      navigation.navigate('Meals List');
+      navigation.navigate('Meals List', { categoryId: itemData.item.id });
     }
     return (
       <CategoryTile
