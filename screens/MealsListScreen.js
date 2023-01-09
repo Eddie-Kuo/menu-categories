@@ -1,14 +1,26 @@
 import { View, FlatList, StyleSheet } from 'react-native';
 import MealItem from '../components/MealItem';
-import { MEALS } from '../data/dummy-data';
+import { MEALS, CATEGORIES } from '../data/dummy-data';
+import { useLayoutEffect } from 'react';
 
-function MealsListScreen({ route }) {
+// screens that are implementing react navigation automatically can use the route and navigation props
+
+function MealsListScreen({ route, navigation }) {
   const categoryId = route.params.categoryId;
 
   const displayedMeals = MEALS.filter((mealItem) => {
     return mealItem.categoryIds.indexOf(categoryId) >= 0;
     // return all the meal items in which the property categoryIds[] has the category id - if it doesn't it should return - 1
   });
+
+  useLayoutEffect(() => {
+    const categoryTitle = CATEGORIES.find(
+      (category) => category.id === categoryId
+    ).title;
+    navigation.setOptions({
+      title: categoryTitle,
+    });
+  }, [categoryId, navigation]);
 
   function renderMealItem(itemData) {
     const item = itemData.item;
